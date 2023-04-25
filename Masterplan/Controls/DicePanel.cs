@@ -78,7 +78,7 @@ namespace Masterplan.Controls
 			// Roll dice
 			foreach (Pair<int, int> die in fDice)
 			{
-				int roll = Session.Dice(1, die.First);
+				int roll = DiceExpression.Dice(1, die.First);
 				die.Second = roll;
 			}
 
@@ -136,7 +136,7 @@ namespace Masterplan.Controls
 			// Reroll selected die
 			if (SelectedRoll != null)
 			{
-				SelectedRoll.Second = Session.Dice(1, SelectedRoll.First);
+				SelectedRoll.Second = DiceExpression.Dice(1, SelectedRoll.First);
 				update_dice_rolls();
 				update_dice_result();
 			}
@@ -154,10 +154,10 @@ namespace Masterplan.Controls
 
 				ClearBtn_Click(sender, e);
 
-				fConstant = exp.Constant;
+				//fConstant = exp.Constant;
 
-				for (int n = 0; n != exp.Throws; ++n)
-					add_die(exp.Sides);
+				//for (int n = 0; n != exp.Throws; ++n)
+				//	add_die(exp.Sides);
 
 				fUpdating = false;
 			}
@@ -239,7 +239,7 @@ namespace Masterplan.Controls
 
 		void add_die(int sides)
 		{
-			int roll = Session.Dice(1, sides);
+			int roll = DiceExpression.Dice(1, sides);
 
 			fDice.Add(new Pair<int, int>(sides, roll));
 			fDice.Sort(new DiceSorter());

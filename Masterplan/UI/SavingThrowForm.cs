@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 using Masterplan.Data;
+using Masterplan.Tools;
 
 namespace Masterplan.UI
 {
@@ -26,7 +27,7 @@ namespace Masterplan.UI
 				if (oc.Duration != DurationType.SaveEnds)
 					continue;
 
-				int roll = (fCard != null) ? Session.Dice(1, 20) : 0;
+				int roll = (fCard != null) ? DiceExpression.Dice(1, 20) : 0;
 				fRolls[oc] = roll;
 			}
 
@@ -213,7 +214,7 @@ namespace Masterplan.UI
 		{
 			if (SelectedEffect != null)
 			{
-				fRolls[SelectedEffect] = Session.Dice(1, 20);
+				fRolls[SelectedEffect] = DiceExpression.Dice(1, 20);
 				update_list();
 			}
 		}

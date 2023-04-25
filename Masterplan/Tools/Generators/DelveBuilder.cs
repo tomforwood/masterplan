@@ -271,19 +271,19 @@ namespace Masterplan.Tools.Generators
 
 					if (Session.Random.Next() % 12 == 0)
 					{
-						int rounds = Session.Dice(2, 4);
+						int rounds = DiceExpression.Dice(2, 4);
 						candidates.Add("The party must defeat " + leader + " within " + rounds + " rounds.");
 					}
 
 					if (Session.Random.Next() % 12 == 0)
 					{
-						int rounds = Session.Dice(2, 4);
+						int rounds = DiceExpression.Dice(2, 4);
 						candidates.Add("After " + rounds + ", " + leader + " will flee or surrender.");
 					}
 
 					if (Session.Random.Next() % 12 == 0)
 					{
-						int hp = 10 * Session.Dice(1, 4);
+						int hp = 10 * DiceExpression.Dice(1, 4);
 						candidates.Add("At " + hp + "% HP, " + leader + " will flee or surrender.");
 					}
 

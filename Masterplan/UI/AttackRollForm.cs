@@ -97,7 +97,7 @@ namespace Masterplan.UI
 		{
 			if (SelectedRoll != null)
 			{
-				int roll = Session.Dice(1, 20);
+				int roll = DiceExpression.Dice(1, 20);
 				SelectedRoll.Second = roll;
 				update_list();
 			}
@@ -110,6 +110,7 @@ namespace Masterplan.UI
 			{
 				int roll = exp.Evaluate();
 				DamageBox.Value = roll;
+				HitTooltip.SetToolTip(DamageBox, exp.ToString());
 			}
 		}
 
@@ -280,6 +281,7 @@ namespace Masterplan.UI
 				
 				DamageExpLbl.Text = dmg_str;
 				CritValueLbl.Text = exp.Maximum.ToString();
+				HitTooltip.SetToolTip(CritValueLbl, exp.ToCritString());
 			}
 		}
 
@@ -291,7 +293,7 @@ namespace Masterplan.UI
 					fRolls.Clear();
 			}
 
-			int roll = Session.Dice(1, 20);
+			int roll = DiceExpression.Dice(1, 20);
 			fRolls.Add(new Pair<CombatData, int>(cd, roll));
 
 			if (cd != null)

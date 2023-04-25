@@ -21,7 +21,7 @@ namespace Masterplan.Tools.Generators
 		{
 			string sentence = "";
 
-			int words = Session.Dice(3, 6);
+			int words = DiceExpression.Dice(3, 6);
 			for (int n = 0; n != words; ++n)
 			{
 				if (sentence != "")

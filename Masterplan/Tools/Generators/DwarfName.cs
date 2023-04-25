@@ -18,7 +18,7 @@ namespace Masterplan.Tools.Generators
 		{
 			string sentence = "";
 
-			int words = Session.Dice(4, 8);
+			int words = DiceExpression.Dice(4, 8);
 			for (int n = 0; n != words; ++n)
 			{
 				string word = "";

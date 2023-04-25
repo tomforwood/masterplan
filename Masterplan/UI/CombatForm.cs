@@ -3340,7 +3340,7 @@ namespace Masterplan.UI
 			// Roll
 			foreach (Pair<List<CombatData>, int> item in to_roll)
 			{
-				int roll = Session.Dice(1, 20) + item.Second;
+				int roll = DiceExpression.Dice(1, 20) + item.Second;
 				foreach (CombatData cd in item.First)
 					cd.Initiative = roll;
 			}
@@ -4192,7 +4192,7 @@ namespace Masterplan.UI
 
 		void roll_check(string name, int mod)
 		{
-			int roll = Session.Dice(1, 20);
+			int roll = DiceExpression.Dice(1, 20);
 			int result = roll + mod;
 
 			string roll_str = roll.ToString();

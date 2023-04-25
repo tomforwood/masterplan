@@ -6107,7 +6107,7 @@ namespace Masterplan.UI
 
 			lines.Add("<BODY>");
 
-			int sentences = Session.Dice(1, 6);
+			int sentences = DiceExpression.Dice(1, 6);
 			for (int n = 0; n != sentences; ++n)
 				lines.Add("<P>" + ElfName.Sentence() + "</P>");
 
@@ -6122,7 +6122,7 @@ namespace Masterplan.UI
 
 			lines.Add("<BODY>");
 
-			int sentences = Session.Dice(1, 6);
+			int sentences = DiceExpression.Dice(1, 6);
 			for (int n = 0; n != sentences; ++n)
 				lines.Add("<P>" + DwarfName.Sentence() + "</P>");
 
@@ -6137,7 +6137,7 @@ namespace Masterplan.UI
 
 			lines.Add("<BODY>");
 
-			int sentences = Session.Dice(1, 6);
+			int sentences = DiceExpression.Dice(1, 6);
 			for (int n = 0; n != sentences; ++n)
 				lines.Add("<P>" + ExoticName.Sentence() + "</P>");
 

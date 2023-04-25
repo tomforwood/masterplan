@@ -430,14 +430,16 @@ namespace Masterplan.Data
 			return fName;
 		}
 
-		/// <summary>
-		/// Returns the HTML representation of the power.
-		/// </summary>
-		/// <param name="cd">The CombatData to use.</param>
-		/// <param name="mode">The type of HTML to generate</param>
-		/// <param name="functional_template">True if this power is from a functional template; false otherwise</param>
-		/// <returns>Returns the HTML source code.</returns>
-		public List<string> AsHTML(CombatData cd, CardMode mode, bool functional_template)
+        /// <summary>
+        /// Returns the HTML representation of the power.
+        /// </summary>
+        /// <param name="cd">The CombatData to use.</param>
+        /// <param name="mode">The type of HTML to generate</param>
+        /// <param name="functional_template">True if this power is from a functional template; false otherwise</param>
+        /// <param name="role">the role of the creature</param>
+        /// <param name="level">the level of the creature</param>
+        /// <returns>Returns the HTML source code.</returns>
+        public List<string> AsHTML(CombatData cd, CardMode mode, bool functional_template, IRole role = null, int level = 0)
 		{
 			bool used = ((mode == CardMode.Combat) && (cd != null) && cd.UsedPowers.Contains(fID));
 
@@ -492,7 +494,7 @@ namespace Masterplan.Data
 			else
 				content.Add("<TR class=dimmed>");
 			content.Add("<TD colspan=3>");
-			content.Add(power_content(mode));
+			content.Add(power_content(mode, role, level));
 			content.Add("</TD>");
 			content.Add("</TR>");
 
@@ -636,7 +638,7 @@ namespace Masterplan.Data
 			return info;
 		}
 
-		string power_content(CardMode mode)
+		string power_content(CardMode mode, IRole role = null, int level = 0)
 		{
 			List<string> lines = new List<string>();
 
@@ -725,6 +727,20 @@ namespace Masterplan.Data
 			string details = HTML.Process(fDetails, true);
 			if (details == null)
 				details = "";
+			if (mode == CardMode.View || mode==CardMode.Build)
+			{
+				double expected = DiceExpression.Parse(details).Average;
+				bool multiple = fRange.ToLower().Contains("close") || fRange.ToLower().Contains("area");
+				double mm3Damage = Statistics.DamageMM3(role, level,
+					(fAction?.Use == PowerUseType.Encounter) || (fAction?.Use == PowerUseType.Daily),
+					multiple);
+				double ratio = expected / mm3Damage;
+				if (expected >0 &&(ratio < 0.8 || ratio >1.2))
+                {
+					details += String.Format("<b>expected={0:#} MM3={1:#}</b>", expected, mm3Damage);
+
+				}
+			}
 			if (mode == CardMode.Build)
 			{
 				if (details == "")

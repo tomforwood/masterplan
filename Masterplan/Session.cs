@@ -1112,18 +1112,7 @@ namespace Masterplan
 
 		#endregion
 
-		public static int Dice(int throws, int sides)
-		{
-			int result = 0;
-
-			for (int n = 0; n != throws; ++n)
-			{
-				int roll = 1 + fRandom.Next() % sides;
-				result += roll;
-			}
-
-			return result;
-		}
+		
 
 		public static bool CheckPassword(Project p)
 		{

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 using Masterplan.Data;
+using Masterplan.Tools;
 
 namespace Masterplan.UI
 {
@@ -26,7 +27,7 @@ namespace Masterplan.UI
 				if ((power == null) || (power.Action == null) || (power.Action.Recharge == ""))
 					continue;
 
-				fRolls[power_id] = Session.Dice(1, 6);
+				fRolls[power_id] = DiceExpression.Dice(1, 6);
 			}
 
 			update_list();
@@ -99,7 +100,7 @@ namespace Masterplan.UI
 		{
 			if (SelectedPowerID != Guid.Empty)
 			{
-				fRolls[SelectedPowerID] = Session.Dice(1, 6);
+				fRolls[SelectedPowerID] = DiceExpression.Dice(1, 6);
 				update_list();
 			}
 		}

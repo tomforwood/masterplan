@@ -248,7 +248,7 @@ namespace Masterplan.UI
 
 			lines.Add("<P class=table>");
 			lines.Add("<TABLE>");
-			lines.AddRange(fPower.AsHTML(null, CardMode.Build, fFromFunctionalTemplate));
+			lines.AddRange(fPower.AsHTML(null, CardMode.Build, fFromFunctionalTemplate, role, level));
 			lines.Add("</TABLE>");
 			lines.Add("</P>");
 

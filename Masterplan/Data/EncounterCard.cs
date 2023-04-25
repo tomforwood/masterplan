@@ -853,7 +853,7 @@ namespace Masterplan.Data
                 }
 
 				// Handle level adjustment
-				if (fLevelAdjustment != 0 || Session.Project.CampaignSettings.AttackBonus != 0 || Math.Abs(Session.Project.CampaignSettings.Damage - 1.0) < 1e-5)
+				if (fLevelAdjustment != 0 || Session.Project.CampaignSettings.AttackBonus != 0 || Math.Abs(Session.Project.CampaignSettings.Damage - 1.0) > 1e-5)
 				{
 					foreach (CreaturePower cp in powers)
 					{
@@ -2129,7 +2129,7 @@ namespace Masterplan.Data
 							power_mode = CardMode.View;
 
 						bool used = ((combat_data != null) && (combat_data.UsedPowers.Contains(cp.ID)));
-						content.AddRange(cp.AsHTML(combat_data, power_mode, false));
+						content.AddRange(cp.AsHTML(combat_data, power_mode, false, creature.Role, creature.Level));
 
 						if (mode == CardMode.Build)
 						{

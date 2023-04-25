@@ -133,6 +133,18 @@ namespace Masterplan.Tools
 			return null;
 		}
 
+		public static double DamageMM3(IRole role, int level, bool limited, bool multiple)
+        {
+			double damage;
+			if (role is Minion) damage = 2 + level / 2;
+			else damage = level + 8;
+			RoleType? rType = (role as ComplexRole)?.Type;
+			if (rType == RoleType.Brute) damage *= 1.25;
+			if (limited) damage *= 1.25;
+			if (multiple) damage *= 0.75;
+			return damage;
+        }
+
 		public static string NormalDamage(int level)
 		{
 			switch (level)
